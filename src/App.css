@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* body {
+  background-color: aquamarine;
+} */
+
+.header-bg{
+  background: linear-gradient(123.64deg, rgba(255, 255, 255, 0) -22.38%, rgba(255, 255, 255, 0.039) 70.38%);
+  border: 2px solid #ffffff33;
+  border-radius: 20px;
+  background-clip: padding-box;
+  overflow: hidden;
+  backdrop-filter: blur(42px)  
+}
+
+.header-logo {
+  background: linear-gradient(97.89deg, #FFFFFF 70.67%, rgba(117, 122, 140, 0) 108.55%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox uchun */
+ 
+}
+
+.login-bg {
+  background-image: url('./assets/login-bg.png');
+}
