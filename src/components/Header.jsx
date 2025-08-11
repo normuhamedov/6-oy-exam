@@ -25,7 +25,7 @@ function Header() {
                     group-hover:from-blue-400 group-hover:to-purple-500 
                     group-active:from-purple-500 group-active:to-pink-500'>PROFILE</p>
                 </Link>
-                <Link className='flex items-center gap-2 group transition-all duration-300 ease-in-out'>
+                <Link to='/register' className='flex items-center gap-2 group transition-all duration-300 ease-in-out'>
                     <IconTwo className='transition-transform duration-300 group-hover:scale-110 group-active:scale-95' />
                     <p className='font-[Plus Jakarta Display] font-bold text-[10px] leading-[150%] tracking-[0em] 
                     bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent 
@@ -33,7 +33,7 @@ function Header() {
                     group-hover:from-blue-400 group-hover:to-purple-500 
                     group-active:from-purple-500 group-active:to-pink-500'>SIGN UP</p>
                 </Link>
-                <Link className='flex items-center gap-2 group transition-all duration-300 ease-in-out'>
+                <Link to='/login' className='flex items-center gap-2 group transition-all duration-300 ease-in-out'>
                     <IconThree className='transition-transform duration-300 group-hover:scale-110 group-active:scale-95' />
                     <p className='font-[Plus Jakarta Display] font-bold text-[10px] leading-[150%] tracking-[0em] 
                     bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent 

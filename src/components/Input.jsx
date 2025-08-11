@@ -1,49 +1,69 @@
-import React from "react";
-import clsx from "clsx";
+"use client"
+
+import { useState } from "react"
+import clsx from "clsx"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 const FancyInput = ({
-    label = "Label",
-    type = "text",
-    placeholder = "Enter text...",
-    value,
-    onChange,
-    className,
-    inputClassName,
-    labelClassName,
-    ...props
+  label = "Label",
+  type = "text",
+  placeholder = "Enter text...",
+  value,
+  onChange,
+  className,
+  inputClassName,
+  labelClassName,
+  error,
+  required = false,
+  ...props
 }) => {
-    return (
-        <div className={clsx("flex flex-col gap-2 w-full mt-[24px]", className)}>
-            {/* Label */}
-            <label
-                className={clsx(
-                    "text-sm font-semibold tracking-wide text-white drop-shadow-md",
-                    labelClassName
-                )}
-            >
-                {label}
-            </label>
+  const [showPassword, setShowPassword] = useState(false)
+  const isPassword = type === "password"
 
-            {/* Input */}
-            <input
-                type={type}
-                placeholder={placeholder}
-                defaultValue={value}
-                onChange={onChange}
+  return (
+    <div className={clsx("flex flex-col gap-2 w-full mb-[14px]", className)}>
+      {/* Label */}
+      <label className={clsx("text-[12px] font-semibold tracking-wide text-white drop-shadow-md", labelClassName)}>
+        {label} {required && <span className="text-red-400">*</span>}
+      </label>
 
-                className={clsx(
-                    "px-4 py-3 rounded-[20px] outline-none",
-                    "bg-[linear-gradient(94.56deg,#FFFFFF33_0%,#21242F33_100%)]",
-                    "backdrop-blur-md text-white placeholder-gray-300",
-                    "focus:border-[#ffffff55] focus:shadow-[0_0_20px_rgba(255,255,255,0.5)]",
-                    "hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]",
-                    "transition-all duration-300 ease-in-out border-[2px] border-[#ffffff33]",
-                    inputClassName
-                )}
-                {...props}
-            />
-        </div>
-    );
-};
+      {/* Input Container */}
+      <div className="relative">
+        <input
+          type={isPassword ? (showPassword ? "text" : "password") : type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className={clsx(
+            "px-4 py-3 rounded-[20px] outline-none w-full",
+            "bg-[linear-gradient(94.56deg,#FFFFFF33_0%,#21242F33_100%)]",
+            "backdrop-blur-md text-white placeholder-gray-300",
+            "focus:border-[#ffffff55] focus:shadow-[0_0_20px_rgba(255,255,255,0.5)]",
+            "hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]",
+            "transition-all duration-300 ease-in-out border-[2px]",
+            error ? "border-red-400" : "border-[#ffffff33]",
+            isPassword && "pr-12",
+            inputClassName,
+          )}
+          {...props}
+        />
 
-export default FancyInput;
+        {/* Password Toggle */}
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-300 hover:text-white transition-colors"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        )}
+      </div>
+
+      {/* Error Message */}
+      {error && <span className="text-red-400 text-xs mt-1">{error}</span>}
+    </div>
+  )
+}
+
+export default FancyInput
